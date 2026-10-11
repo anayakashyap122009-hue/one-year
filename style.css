@@ -592,3 +592,76 @@ h2 {
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================
+   FIX: CHAPTER 5 SCROLLING ON MOBILE 💗
+   ========================================= */
+
+html {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Let the chapter area grow with its content */
+#chapterViewport {
+  height: auto !important;
+  min-height: 0;
+  overflow: visible !important;
+  position: relative;
+}
+
+/* Keep inactive chapters hidden */
+.chapter {
+  display: none;
+  height: auto;
+  min-height: 0;
+  overflow: visible !important;
+}
+
+/* Display only the selected chapter */
+.chapter.active {
+  display: block;
+  height: auto;
+  min-height: 0;
+  overflow: visible !important;
+}
+
+/* Make sure the anniversary finale can expand */
+.chapter.finale {
+  height: auto !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: visible !important;
+  position: relative;
+}
+
+.finale .chapter-content,
+.finale .finale-content {
+  height: auto !important;
+  min-height: 0;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 110px;
+}
+
+/* Keep decorative layers from blocking finger swipes */
+.star-field,
+.floating-decor,
+.finale-glow {
+  pointer-events: none;
+}
+
+/* Keep the bottom navigation accessible */
+.bottom-nav {
+  z-index: 100;
+}

@@ -4,121 +4,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#140b20">
+  <meta name="theme-color" content="#160d2c">
   <title>Our Forever Universe 💗</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="stars"></div>
-  <div id="hearts"></div>
 
-  <header>
-    <a class="logo" href="#home">R <span>♡</span> L</a>
-    <button id="musicButton">♫ Our song</button>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div id="floatingHearts" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="logo">R <span>♡</span> L</div>
+    <div class="topbar-right">
+      <span id="chapterCount">Chapter 1 of 5</span>
+      <button id="musicButton" class="music-button" type="button">♫ Play music</button>
+    </div>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <p class="eyebrow">ONE YEAR • A MILLION LITTLE FEELINGS</p>
-      <div class="hero-heart">♥</div>
-      <p class="script">For my favourite person</p>
-      <h1>Our Forever<br><span>Universe</span></h1>
-      <p class="subtitle">A little universe made with all the love my heart has for you, Lakshita.</p>
-      <p class="signature">From your Rishuuu, with all my heart ♡</p>
-      <a class="button" href="#chapters">Enter our universe ↘</a>
-      <p class="scroll">SCROLL TO FEEL THE LOVE ↓</p>
-    </section>
+    <!-- CHAPTER 1 -->
+    <section class="chapter active" id="chapter1" data-song="song1.mp3">
+      <div class="chapter-content hero">
+        <div class="eyebrow">A little universe, made just for you</div>
+        <div class="heart-orbit"><span>♥</span></div>
+        <h1>Our Forever<br><span>Universe</span></h1>
+        <p class="subtitle">For my Lakshita, my favourite person in every universe.</p>
 
-    <section class="section" id="chapters">
-      <p class="eyebrow">FIVE CHAPTERS • ONE FOREVER</p>
-      <h2>Every little part of <span>my love</span></h2>
-      <div class="chapters">
-        <a class="chapter" href="#letter">
-          <span>01 • 💌</span><h3>A letter for you</h3>
-          <p>All the feelings I never want you to forget.</p>
-        </a>
-        <a class="chapter" href="#memories">
-          <span>02 • 📸</span><h3>My favourite view</h3>
-          <p>Fifty pictures of the girl who has my heart.</p>
-        </a>
-        <a class="chapter" href="#care">
-          <span>03 • 🧸</span><h3>Your safe place</h3>
-          <p>A reminder that you deserve softness and care.</p>
-        </a>
-        <a class="chapter" href="#promises">
-          <span>04 • ✨</span><h3>My forever promises</h3>
-          <p>Little promises, held with a whole heart.</p>
-        </a>
-        <a class="chapter featured" href="#finale">
-          <span>05 • 💗</span><h3>One year, forever to go</h3>
-          <p>The end of this page, not of our story.</p>
-        </a>
+        <div class="glass-card">
+          <p class="script-heading">My dearest Lakshita 💌</p>
+          <p>
+            If I could give you one thing in this world, I would give you
+            the ability to see yourself through my eyes. Then you would
+            understand how special you are to me, how your smile makes
+            ordinary moments beautiful, and how lucky I feel to have you
+            in my life. This little universe is made with all my love,
+            just for you.
+          </p>
+          <p class="signature">Forever yours, Rishuuu 💗</p>
+        </div>
+        <div class="hint">A little surprise is waiting for you ↓</div>
       </div>
     </section>
 
-    <section class="section" id="letter">
-      <div class="letter">
-        <p class="eyebrow">CHAPTER 01 • A LETTER FROM RISHUUU</p>
-        <h2>To my <span>cutuuu</span> 💌</h2>
-        <p>My babbyyy, one whole year with you and my heart still gets that happy feeling whenever I think about you. You have become such a beautiful part of my world, and even ordinary days feel more special because you exist in them. I hope you always remember how loved, precious, and appreciated you are. You don't have to be perfect or strong every second. You can simply be you. Thank you for being my favourite person, my comfort, and the girl I keep choosing with all my heart. Happy one year, my Lakshita. I loveeeee youuu more than these little words could ever explain. 💗</p>
-        <p class="signoff">Always yours,<br><span>your Rishuuu ♡</span></p>
+    <!-- CHAPTER 2 -->
+    <section class="chapter" id="chapter2" data-song="song2.mp3">
+      <div class="chapter-content gallery-chapter">
+        <div class="eyebrow">Every picture holds a little magic</div>
+        <h2>My Beautiful <span>Lakshita</span> 📸</h2>
+        <p class="subtitle">42 little reminders of how beautiful you are.</p>
+        <div id="gallery" class="gallery"></div>
+        <p class="gallery-note">Every photo is special, because it's you. 💗</p>
       </div>
     </section>
 
-    <section class="section" id="memories">
-      <p class="eyebrow">CHAPTER 02 • 50 LITTLE REASONS TO SMILE</p>
-      <h2>My favourite <span>view</span> 📸</h2>
-      <p class="muted">Every picture is a tiny reminder of how lucky I feel to adore you.</p>
-      <div class="gallery" id="gallery"></div>
-      <p class="muted small">Tap any photo to see it closer, my babbyyy. ♡</p>
-    </section>
+    <!-- CHAPTER 3 -->
+    <section class="chapter" id="chapter3" data-song="song3.mp3">
+      <div class="chapter-content centered">
+        <div class="eyebrow">Whenever the world feels heavy</div>
+        <div class="big-emoji">🫂</div>
+        <h2>Your Safe <span>Place</span></h2>
+        <p class="subtitle">You never have to be strong every single moment, babby.</p>
 
-    <section class="section center" id="care">
-      <div class="teddy">🧸</div>
-      <p class="eyebrow">CHAPTER 03 • A SOFT LITTLE REMINDER</p>
-      <h2>For the days you need <span>a hug</span></h2>
-      <div class="letter">
-        My sweetheart, please be gentle with yourself. You deserve rest without guilt and happiness without having to earn it. On hard days, take one breath at a time. You don't have to solve your whole world at once. I'm always cheering for you, proud of you, and wishing I could make every heavy feeling a little lighter. Drink some water, relax those pretty eyes, and remember: you're precious even on the days you don't feel your best. 🫂💗
+        <div class="glass-card">
+          <p>
+            My love, on your difficult days, please remember that you
+            don't have to handle everything alone. You deserve patience,
+            kindness, rest, and all the little things that make your heart
+            feel lighter. I might not always know the perfect words, but
+            I want to keep learning how to understand you, listen to you,
+            and make you feel loved.
+          </p>
+          <p class="signature">Come here, meri jaan. Virtual huggg! 💗</p>
+          <button id="hugButton" class="glow-button" type="button">Open your hug 🫂</button>
+          <p id="hugMessage" class="hug-message" hidden>
+            Sending the biggest, warmest hug to my babbyyy! 🤗💗
+          </p>
+        </div>
       </div>
-      <button class="button" id="hugButton">Tap for a virtual hug ♡</button>
-      <p id="hugMessage" class="script"></p>
     </section>
 
-    <section class="section" id="promises">
-      <p class="eyebrow">CHAPTER 04 • LITTLE PROMISES, BIG LOVE</p>
-      <h2>Things my heart <span>promises</span></h2>
-      <div class="promise">♡ To keep learning how to love you better, not just say it louder.</div>
-      <div class="promise">♡ To listen to your feelings and treat them with care.</div>
-      <div class="promise">♡ To celebrate your wins and support you on tough days.</div>
-      <div class="promise">♡ To make space for laughter, honest talks, and new memories.</div>
-      <div class="promise">♡ To choose kindness, respect, and us—one day at a time.</div>
+    <!-- CHAPTER 4 -->
+    <section class="chapter" id="chapter4" data-song="song4.mp3">
+      <div class="chapter-content centered">
+        <div class="eyebrow">Not just words, but promises</div>
+        <div class="big-emoji">💍</div>
+        <h2>My Promises <span>Forever</span></h2>
+        <p class="subtitle">Little promises from your Rishuuu, with all his heart.</p>
+
+        <div class="promise-list">
+          <div class="promise">♡ I promise to keep listening, even when the words are difficult.</div>
+          <div class="promise">♡ I promise to celebrate your happiness and support your dreams.</div>
+          <div class="promise">♡ I promise to respect your feelings, your space, and your individuality.</div>
+          <div class="promise">♡ I promise to keep choosing honesty, kindness, and effort.</div>
+          <div class="promise">♡ I promise to never stop finding little ways to make you smile.</div>
+        </div>
+        <p class="signature">One heart, a thousand little promises. 💗</p>
+      </div>
     </section>
 
-    <section class="section center finale" id="finale">
-      <p class="eyebrow">CHAPTER 05 • OUR FIRST YEAR</p>
-      <div class="hero-heart">♥</div>
-      <h2>One year down,<br><span>forever to go.</span></h2>
-      <p class="subtitle">Happy one-year anniversary, my Lakshita Sharma. Thank you for being you, for being part of my world, and for giving my heart so many reasons to smile. I hope we keep creating beautiful memories, through every season that comes our way.</p>
-      <p class="script">Rishabh loves Lakshita. Always. ♡</p>
-      <button class="button" id="loveButton">Open one last surprise ✨</button>
-      <p id="finalMessage" class="script"></p>
+    <!-- CHAPTER 5 -->
+    <section class="chapter" id="chapter5" data-song="song5.mp3">
+      <div class="chapter-content centered finale">
+        <div class="eyebrow">And our story keeps going...</div>
+        <div class="final-heart">♥</div>
+        <h2>In Every Universe,<br><span>It's You</span></h2>
+        <p class="subtitle">
+          Across a thousand stars, a million dreams, and every possible universe...
+        </p>
+
+        <div class="glass-card">
+          <p class="script-heading">My forever person 💌</p>
+          <p>
+            Lakshita, thank you for being a beautiful part of my life.
+            I hope this little website reminds you that you are appreciated,
+            cherished, and loved for who you are. No animation or words could
+            ever capture everything I feel, but every little detail here
+            carries a piece of my heart.
+          </p>
+          <h3 class="forever-text">Rishabh <span>♡</span> Lakshita</h3>
+          <p class="signature">I loveeeee youuu, my sweethearttt! 💗🌙</p>
+        </div>
+
+        <button id="replayButton" class="glow-button" type="button">Replay our universe ↻</button>
+      </div>
     </section>
   </main>
 
-  <footer>MADE WITH TOO MUCH LOVE BY RISHUUU FOR LAKSHITA 💗</footer>
+  <nav class="navigation" aria-label="Chapter navigation">
+    <button id="backButton" class="nav-button" type="button" disabled>← Back</button>
+    <div id="chapterDots" class="chapter-dots" aria-label="Chapter progress">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <button id="nextButton" class="nav-button primary" type="button">Next →</button>
+  </nav>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close" id="closePhoto" aria-label="Close photo">×</button>
-    <button class="nav prev" id="prevPhoto" aria-label="Previous photo">‹</button>
-    <img id="largePhoto" alt="Lakshita">
-    <button class="nav next" id="nextPhoto" aria-label="Next photo">›</button>
-    <p id="photoCaption"></p>
+  <div id="lightbox" class="lightbox" hidden>
+    <button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close photo">×</button>
+    <button id="previousPhoto" class="lightbox-arrow left" type="button" aria-label="Previous photo">‹</button>
+    <figure>
+      <img id="lightboxImage" src="" alt="Lakshita">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button id="nextPhoto" class="lightbox-arrow right" type="button" aria-label="Next photo">›</button>
   </div>
 
-  <!-- Optional music: upload song.mp3 beside index.html -->
-  <audio id="bgMusic" src="song.mp3" loop preload="none"></audio>
+  <audio id="bgMusic" loop preload="none"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>

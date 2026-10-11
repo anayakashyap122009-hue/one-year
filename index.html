@@ -4,305 +4,314 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#10051e">
+  <meta name="theme-color" content="#16091f">
   <title>Our Forever Universe 💗</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="stars"></div>
-  <div id="floatingHearts" aria-hidden="true"></div>
+  <div id="starField" class="star-field"></div>
+  <div id="floatingDecor" class="floating-decor" aria-hidden="true"></div>
 
   <header class="topbar">
-    <div class="logo">R <span>♡</span> L</div>
-    <div class="top-actions">
-      <span id="chapterCount">Chapter 1 of 5</span>
-      <button id="musicButton" class="music-button" type="button">♫ Play music</button>
-    </div>
+    <a href="#" class="monogram" aria-label="R and L forever">R<span>♡</span>L</a>
+    <div class="chapter-counter" id="chapterCounter">Chapter 1 of 5</div>
   </header>
 
-  <main>
-    <!-- CHAPTER 1: THE LOVE LETTER -->
-    <section class="chapter active" id="chapter1" data-song="song1.mp3">
+  <main id="chapterViewport">
+    <!-- CHAPTER 1 -->
+    <section class="chapter active" data-chapter="0">
       <div class="chapter-content hero">
-        <p class="eyebrow">A tiny universe made with a huuuge heart</p>
-        <div class="heart-orbit"><span>♥</span></div>
+        <p class="eyebrow">A TINY UNIVERSE MADE WITH A HUUUGE HEART</p>
+
+        <div class="heart-orbit" aria-hidden="true">
+          <span>♥</span>
+        </div>
 
         <h1>Our Forever<br><span>Universe</span></h1>
         <p class="subtitle">
           For myyyy Lakshitaaa, my favourite girl in this whole wide universeee. 💗
         </p>
 
-        <article class="glass-card">
-          <p class="script-heading">Meri pyaarrii babbyjaan, 💌</p>
+        <article class="letter glass-card">
+          <p class="script-title">To my babbyjaan, my Lakshitaaa…</p>
+
           <p>
-            Hellooooo meriiii cutuuuu babbyjaannnn! 🥹💗 If you're reading
-            this, just know that your Rishuuuu has put a little piece of his
-            heart into every corner of this tiny universe. I wishhh I could
-            wrap alllll my feelings into one hug and let you feel just how
-            much you meannnn to meee.
+            Happyyyy first anniversaryyy, meriii jaanuuu. 💗 One whole year of usss,
+            one whole year of choosing youuu, and one whole year of discovering that
+            my heart can love someone in ways I never even knew were possibleee.
+            Sometimes I look at you and wonder how one person can become so much to
+            another person. You became my favourite notification, my safest thought,
+            my biggest smile, my cutest distraction, and the person I want to tell
+            every little thing to, even when nothing special has happened.
           </p>
+
           <p>
-            Sometimes I wonder how one person can become such a beautiful
-            part of somebody's world. And then I think of youuu — your
-            smileee, your little ways, your presence, and all those tiny
-            things that make you YOUUU. Somehowww, even an ordinary day
-            feels a little more special when you're part of it.
+            Lakshitaaa, I wish I could put every little feeling I have for you into
+            words, but even a thousand pages would feel too small. You are not just
+            someone I loveee; you are someone I want to keep learning, understanding,
+            supporting, teasing, pampering, and choosing every single day. I love
+            your little ways, your adorable moments, your smile, your expressions,
+            and all those tiny things you might not even notice about yourself.
+            Somehow, those are the things my heart remembers the mosttt.
           </p>
+
           <p>
-            Babbyyy, you don't have to be perfect for me to adore youuu.
-            You don't have to smile every second or pretend that everything
-            is okayyy. I want to know the real youuu, celebrate your happy
-            moments, listen on your difficult days, and keep learning how
-            to love you in the ways that make you feel loveddd.
+            This little universe is made for youuu, with all the love your Rishuuu
+            carries for his favourite girllll. Every chapter is a tiny piece of my
+            heart, every picture is a little memory of your beautiful existence,
+            and every word is me trying to tell you what I might never be able to
+            explain perfectly in person. So take my hand, cutieee. Let's open our
+            little universe together. This is our story, our love, and our foreverrr. 💞
           </p>
-          <p>
-            Sooo this is my little surprise for youuu — five tiny worlds,
-            five songs, forty-two pictures of my pretty girllll, and one
-            veryyy silly boy whose heart goes all soft whenever he thinks
-            about youuu. 🥹🫶
-          </p>
-          <p class="signature">I LOVEEEEEEE YOUUUU, MERIIII JAANNNN! 💗</p>
-          <p class="signature small-signature">Forever your Rishuuuu ♡</p>
         </article>
 
-        <p class="hint">Your little universe is waitinggg, babbyyy ↓</p>
+        <div class="tiny-note">Made with every little piece of my heart, just for you ♡</div>
       </div>
     </section>
 
-    <!-- CHAPTER 2: THE 42 PHOTO GALLERY -->
-    <section class="chapter" id="chapter2" data-song="song2.mp3">
-      <div class="chapter-content gallery-chapter">
-        <p class="eyebrow">Forty-two pictures, one very special girl</p>
-        <h2>My Beautiful <span>Lakshitaaa</span> 📸</h2>
+    <!-- CHAPTER 2 -->
+    <section class="chapter" data-chapter="1">
+      <div class="chapter-content">
+        <p class="eyebrow">CHAPTER TWO · MY FAVOURITE HUMAN</p>
+        <h2>42 little pieces of <span>my heart</span></h2>
         <p class="subtitle">
-          Every picture has its own little magiccc, but somehowww you're
-          pretty in every single oneee. 💕
+          Every picture has a little bit of magic, because every picture is a little bit of youuu. 📸💗
         </p>
 
-        <div id="gallery" class="gallery"></div>
-
-        <article class="glass-card gallery-letter">
-          <p class="script-heading">Can I tell you somethinggg? 🥹</p>
+        <article class="glass-card story-card">
           <p>
-            I could look at these pictures a thousand timesss and still
-            find another little thing to adoreee. Your faceee, your
-            expressionsss, your smileee — they remind me that the simplest
-            things can hold the biggest feelingsss. These aren't just
-            photos to meee, babbyjaan. They're little reminders of the
-            beautiful person you areee, and how lucky I feel to know youuu.
+            Babbyyy, if someone asked me to describe beauty, I would probably end
+            up talking about youuu for hours. Not because I need a perfect picture
+            or a perfect moment, but because there is something about you that
+            makes my heart pause for a second. Every photo here reminds me that
+            my favourite girl exists in this enormous world, and somehow I get to
+            love her. How lucky can one Rishuuu possibly beee?
           </p>
-          <p class="signature">My prettiest girllll, alwaysss. 🎀💗</p>
+
+          <p>
+            I wish I could save every smile of yours, every cute expression,
+            every silly moment, and every version of you that the world gets to
+            see. I want to remember you on your happiest days and hold your hand
+            on your difficult ones too. You never have to look perfect for me,
+            jaan. You never have to pretend to be okay when you're not. You can
+            be sleepy, moody, excited, emotional, silly, quiet, or completely
+            random. You are allowed to be your whole self with meee.
+          </p>
+
+          <p>
+            These forty-two pictures are only a tiny collection. They could never
+            contain all the reasons I adore you, because my favourite things about
+            you aren't limited to photographs. They live in the way you make me
+            smile at my screen, the way I remember little things you say, and
+            the way an ordinary day feels more special when you're part of it.
+            My pretty girl, you are so much more than a picture. You are a person
+            I want to know more deeply, appreciate more carefully, and love more
+            thoughtfully with every passing yearrr. 💗
+          </p>
         </article>
+
+        <div class="photo-grid" id="photoGallery" aria-label="42 photos of Lakshita"></div>
+        <p class="tiny-note">Tap any picture to see it bigger, my babbyjaan. 💕</p>
       </div>
     </section>
 
-    <!-- CHAPTER 3: YOUR SAFE PLACE -->
-    <section class="chapter" id="chapter3" data-song="song3.mp3">
+    <!-- CHAPTER 3 -->
+    <section class="chapter" data-chapter="2">
       <div class="chapter-content centered">
-        <p class="eyebrow">For the days you need a little extra love</p>
-        <div class="big-emoji">🫂</div>
-        <h2>Your Safe <span>Placeee</span></h2>
-        <p class="subtitle">
-          Meriii jaan, you deserve softness toooo. You don't have to carry
-          everything aloneee. 💗
-        </p>
-
-        <article class="glass-card">
-          <p class="script-heading">Idhar aaooo, meri babbyjaan. 🥹</p>
-          <p>
-            If today feels too heavyyy, take a little breathhh, okayyy?
-            You don't need to solve everything right nowww. You can resttt,
-            you can cryyy, you can be quiettt, and you can take your timeee.
-            You are still worthy of love on the days when you don't feel
-            your besttt.
-          </p>
-          <p>
-            I might not always know the perfect thing to sayyy, and I
-            might not always understand everything straight awayyy, but
-            I want to keep listeninggg, keep learninggg, and keep showing
-            you that your feelings matterrr. Your happiness mattersrr.
-            Your dreams matterrr. YOUUU matterrr, meri jaan.
-          </p>
-          <p>
-            And whenever you need a little reminder, imagine your Rishuuuu
-            opening his arms wideee and giving you the warmesttt, safesttt,
-            squishiest huggg everrr. No rushhh, no pressureee — just a
-            little moment to breatheee. 🤗💗
-          </p>
-          <p class="signature">A biggggg huggg for my babbyjaan! 🫂</p>
-          <button id="hugButton" class="glow-button" type="button">
-            TAP FOR A HUGGG 🫂💗
-          </button>
-          <p id="hugMessage" class="hug-message" hidden>
-            HUGGGGG DELIVEREDDDD! 🤗💗 Imagine me holding you closeee
-            and whispering, "It's okayyy, babbyyy. Take your timeee.
-            I'm cheering for youuu."
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- CHAPTER 4: FOREVER PROMISES -->
-    <section class="chapter" id="chapter4" data-song="song4.mp3">
-      <div class="chapter-content centered">
-        <p class="eyebrow">Little promises from a very full heart</p>
-        <div class="big-emoji">💍</div>
-        <h2>My Promises <span>Foreverrr</span></h2>
-        <p class="subtitle">
-          Not just pretty words, babbyjaan — little things I want to keep
-          showing you through my actions toooo. 💞
-        </p>
-
-        <div class="promise-list">
-          <div class="promise">
-            💗 I promise to keep listeninggg, even when your feelings are
-            difficult to explainnn.
-          </div>
-          <div class="promise">
-            🌷 I promise to cheer for your dreams and be proud of the person
-            you're becominggg.
-          </div>
-          <div class="promise">
-            🫶 I promise to respect your feelingsss, your boundaries,
-            your spaceee, and your individuality.
-          </div>
-          <div class="promise">
-            💌 I promise to keep choosing honestyyy, kindnessss, patienceee,
-            and genuine efforttt.
-          </div>
-          <div class="promise">
-            🥹 I promise to keep finding tiny ways to make you smileee,
-            even on the most ordinary daysss.
-          </div>
-          <div class="promise">
-            ♾️ I promise that love should feel like careee, respecttt,
-            laughterrr, and two people growing togetherrr.
-          </div>
+        <p class="eyebrow">CHAPTER THREE · YOUR SAFE LITTLE PLACE</p>
+        <div class="teddy-scene" aria-label="A cute teddy bear holding a heart">
+          <div class="teddy">🧸</div>
+          <div class="teddy-heart">💗</div>
+          <div class="little-hearts" aria-hidden="true">♡ ♥ ♡</div>
         </div>
 
-        <article class="glass-card">
+        <h2>Come here, my <span>cutieee</span></h2>
+
+        <article class="glass-card story-card">
           <p>
-            Meriii cutuuu, I knowww that no relationship is made of perfect
-            days allll the timeee. What matters to me is that we keep
-            communicatinggg, understandinggg, forgiving when it's righttt,
-            and making room for each other's feelingsss. I want our story
-            to be full of little efforts that mean somethinggg — not only
-            big promises, but the everyday kind of loveee toooo.
+            Babbyjaan, imagine me sitting beside you right now, gently pulling you
+            into the biggest, warmest, safest hug everrr. No rushing, no pressure
+            to explain everything, no need to find the perfect words. Just you
+            resting comfortably while I remind you that you matter, that your
+            feelings matter, and that you don't have to face every difficult moment
+            feeling alone. If I could, I would wrap this entire page around you
+            like a soft blanket and add a hundred tiny kisses on your foreheadttt. 💋
           </p>
-          <p class="signature">A thousand promises, one very full hearttt. 💗</p>
+
+          <p>
+            I know I won't always understand everything immediately, and I won't
+            always know the perfect thing to say. But I want to keep learning how
+            to listen to you, how to understand what you need, and how to show love
+            in ways that actually make you feel loved. Sometimes you might need
+            advice, sometimes you might need a laugh, and sometimes you might only
+            want someone to sit quietly beside you. I want to learn those little
+            differences instead of assuming I always know best.
+          </p>
+
+          <p>
+            You deserve gentleness, respect, patience, and happiness, my girl.
+            You deserve to feel heard without being judged and cared for without
+            having to earn it by being cheerful all the time. And please remember
+            that taking care of yourself, having your own dreams, and needing
+            personal space will never make you less lovable. I adore the whole
+            person you are, not just the moments when everything is easyyy.
+            Sending you one giant virtual huggg, a tiny teddy, and unlimited
+            forehead kisses from your Rishuuu. 🧸💗
+          </p>
         </article>
+
+        <button class="cute-button" id="hugButton" type="button">Send me a huuuggg ♡</button>
+        <p id="hugMessage" class="hug-message" aria-live="polite"></p>
       </div>
     </section>
 
-    <!-- CHAPTER 5: ULTIMATE ANNIVERSARY FINALE -->
-    <section class="chapter anniversary-chapter" id="chapter5" data-song="song5.mp3">
-      <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
-      <div class="finale-glow" aria-hidden="true"></div>
-      <div id="finaleConfetti" aria-hidden="true"></div>
+    <!-- CHAPTER 4 -->
+    <section class="chapter" data-chapter="3">
+      <div class="chapter-content">
+        <p class="eyebrow">CHAPTER FOUR · LITTLE PROMISES, BIG LOVE</p>
+        <h2>My heart chooses <span>youuu</span></h2>
+        <p class="subtitle">
+          Not just beautiful words today, but thoughtful actions tomorrow and every day after. 💞
+        </p>
 
-      <div class="chapter-content centered anniversary-content">
-        <p class="anniversary-kicker">✦ ONE YEAR OF USSS ✦</p>
-        <div class="anniversary-crown">♛</div>
-
-        <div class="anniversary-heart"><span>♥</span></div>
-
-        <p class="reveal-label">For the girl who has a very special place in my hearttt...</p>
-
-        <h2 class="anniversary-title">
-          HAPPY
-          <span class="year-line">1 YEAR</span>
-          ANNIVERSARYYY!
-        </h2>
-
-        <h3 class="baby-title">
-          MYYY CUTUUU<br>
-          <span>BABBYJAANNNN!</span> 💗
-        </h3>
-
-        <div class="anniversary-divider"><span>♡</span> ∞ <span>♡</span></div>
-
-        <article class="anniversary-message">
-          <p class="gold-line">ONE WHOLE YEAR OF USSS! 🥹💞</p>
+        <article class="glass-card story-card">
           <p>
-            HAPPYYYY 1 YEAR ANNIVERSARYYYY, MERIIII CUTUUU BABBYJAANNNN!
-            😭💗 Can you believeee that our little story has reached this
-            beautiful milestoneee? One whole yearrr of memories, feelingsss,
-            learninggg, laughinggg, and becoming a part of each other's
-            lives in our own special wayyy.
+            My Lakshitaaa, one year together makes me happy, but what makes me
+            even happier is thinking about all the little ways we can keep growing.
+            I don't want our love to be only about anniversary wishes and pretty
+            paragraphs. I want it to show up in ordinary life: in listening
+            carefully, apologising sincerely, laughing together, making time for
+            each other, and learning how to handle difficult moments with more
+            patience than we had beforeee.
           </p>
+
           <p>
-            Babbyyy, if I could wrap this entire year into one giant huggg,
-            I would hold you closeee and tell you how much the little
-            things mean to meee. Every sweet conversationnn, every smileee,
-            every time we made each other laughhh, and every moment that
-            taught us something about each otherrr — all of it has a place
-            in my hearttt.
+            I promise to keep trying to understand you instead of expecting you
+            to read my mind. I promise to respect your opinions, your boundaries,
+            your ambitions, and your individuality. I promise to celebrate your
+            wins without making them about me, and to encourage you when a dream
+            feels far away. I want us to be two people who love each other deeply
+            and still give each other room to grow into the people we want to be.
           </p>
+
           <p>
-            I can't promise that every single day ahead will be perfecttt,
-            but I can promise that I want to keep showing up with careee,
-            honestyyy, patienceee, and loveee. I want us to keep making
-            memories, supporting each other's dreams, celebrating our
-            little wins, and finding reasons to smile togetherrr.
-          </p>
-          <p>
-            If there were a million universesss and a million different
-            versions of this storyyy, I would still hope that somewhere
-            among all those stars, our paths would find each otherrr.
-            Because knowing youuu has become such a precious part of
-            my storyyy, meri jaan. 🌌💗
-          </p>
-          <p class="final-love-note">
-            I LOVEEEEEEEE YOUUUUU SOOOOO MUCHHHHH! 💗💗💗
-          </p>
-          <p class="signature">
-            Forever with loveee, your Rishuuuuuu 🫶
+            I know promises mean something only when our actions support them.
+            I won't pretend that every day will be perfect or that we'll never
+            disagree. We are human, jaan, and we'll keep learning. What I hope
+            for us is the courage to talk honestly, the kindness to repair hurt,
+            the humility to say sorry, and the willingness to keep choosing
+            respect even when a conversation is difficult. I want to celebrate
+            not only how long we've been together, but how thoughtfully we care
+            for each other as time goes onnn. Forever is built one little day at
+            a time, and I want to build those days with youuu. 💗
           </p>
         </article>
 
-        <button id="fireworksButton" class="fireworks-button" type="button">
-          ✨ MAKE OUR SKY SPARKLEEEE ✨
-        </button>
+        <div class="promise-grid">
+          <div class="promise-card"><span>♡</span><h3>I promise to listen</h3><p>Your feelings deserve patience, care, and my full attention.</p></div>
+          <div class="promise-card"><span>🌷</span><h3>I promise to respect you</h3><p>Your dreams, choices, boundaries, and individuality matter.</p></div>
+          <div class="promise-card"><span>✨</span><h3>I promise to keep learning</h3><p>I'll keep growing with you, not expect either of us to be perfect.</p></div>
+          <div class="promise-card"><span>💌</span><h3>I promise to show up</h3><p>I'll keep making time for honest conversations and little moments.</p></div>
+        </div>
+      </div>
+    </section>
 
-        <p class="anniversary-footnote">
-          One year downnn... so many beautiful memories still waitinggg. ♾️
+    <!-- CHAPTER 5 -->
+    <section class="chapter finale" data-chapter="4">
+      <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
+      <div class="finale-glow" aria-hidden="true"></div>
+
+      <div class="chapter-content centered finale-content">
+        <p class="eyebrow">CHAPTER FIVE · ONE YEAR DOWN, A LIFETIME TO GROW</p>
+
+        <div class="final-heart" aria-hidden="true">♥</div>
+        <p class="script-title">To my favourite person in every universe…</p>
+
+        <h2 class="anniversary-title">HAPPYYY 1 YEAR<br><span>ANNIVERSARYYY!</span></h2>
+
+        <p class="subtitle finale-subtitle">
+          Myyy cutuu babbyjaan, you make my world feel a little more beautiful. 💖
         </p>
 
-        <p class="forever-text">Rishabh <span>♡</span> Lakshita</p>
+        <article class="glass-card story-card">
+          <p>
+            HAPPYYYY ONE YEAR ANNIVERSARYYY, MERIII SABSE PYAARIII
+            LAKSHITAAAA SHARMAAAA!!! 😭💗🎉 Babbyyyyy, we made it to one whole
+            year of usss! One year of memories, conversations, silly moments,
+            learning, caring, growing, and finding more reasons to adore each
+            other. I wish I could pause this moment, hold your hands, look into
+            your eyes, and tell you just how much this little milestone means
+            to meee. Thank you for being part of this chapter of my life and
+            for giving me so many moments to smile about.
+          </p>
 
-        <button id="replayButton" class="glow-button" type="button">
-          RELIVE OUR UNIVERSEEE ↻
+          <p>
+            My cutuu babbyjaan, I hope you always remember that you deserve love
+            that feels kind, honest, respectful, and safe. I hope you keep
+            chasing your dreams, discovering new things about yourself, and
+            becoming even more confident in the person you are. I want to cheer
+            for you when you succeed, encourage you when something feels
+            difficult, laugh with you over the most ridiculous things, and
+            keep learning the little ways to make you feel appreciated.
+            Your happiness matters, your individuality matters, and your
+            beautiful heart deserves so much gentleness. 🌷
+          </p>
+
+          <p>
+            And babbyyy, this is not a promise that we'll never have a hard day.
+            It's a wish that when life gets complicated, we'll remember to
+            approach each other with honesty, patience, and respect. I want our
+            story to have silly jokes, deep talks, random adventures, shared
+            dreams, comforting hugs, celebrations, and ordinary afternoons
+            that become precious simply because we spent them together.
+            I want us to look back someday and feel proud not only of the time
+            we've shared, but of the care we put into making it meaningful.
+          </p>
+
+          <p>
+            Rishuuu loves Lakshitaaa. Today, tomorrow, and in every little
+            chapter we get to write together, I hope I keep showing you that
+            love through my actions, not only through these extraaaa long
+            messages. Thank you for being youuu, my sweethearttt, my cutieee,
+            my favourite girl in this enormous universe. Happy first
+            anniversaryyy, babbyjaan. Here's to more laughter, more memories,
+            more learning, more tenderness, and many more beautiful chapters
+            if we keep choosing to write them together. I LOVEEEE YOUUUUU
+            SOOOO MUCHHHH, MERIII JAANUUU!!! 💗🧸💋✨
+          </p>
+        </article>
+
+        <button class="cute-button fireworks-button" id="fireworksButton" type="button">
+          Make the sky sparkle again ✨
         </button>
+
+        <p class="signature">Forever sending love, your Rishuuu ♡</p>
       </div>
     </section>
   </main>
 
-  <nav class="navigation" aria-label="Chapter navigation">
-    <button id="backButton" class="nav-button" type="button" disabled>← Back</button>
-    <div id="chapterDots" class="chapter-dots" aria-label="Chapter progress">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+  <footer class="bottom-nav">
+    <button id="backButton" class="nav-button back-button" type="button" disabled>← Back</button>
+    <div class="chapter-dots" id="chapterDots" aria-label="Chapter progress">
+      <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
     </div>
-    <button id="nextButton" class="nav-button primary" type="button">Next →</button>
-  </nav>
+    <button id="nextButton" class="nav-button next-button" type="button">Next →</button>
+  </footer>
 
-  <div id="lightbox" class="lightbox" hidden>
+  <audio id="bgMusic" preload="auto" loop></audio>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
     <button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close photo">×</button>
-    <button id="previousPhoto" class="lightbox-arrow left" type="button" aria-label="Previous photo">‹</button>
-    <figure>
-      <img id="lightboxImage" src="" alt="Lakshita">
-      <figcaption id="lightboxCaption"></figcaption>
-    </figure>
-    <button id="nextPhoto" class="lightbox-arrow right" type="button" aria-label="Next photo">›</button>
+    <button id="previousPhoto" class="lightbox-arrow" type="button" aria-label="Previous photo">‹</button>
+    <img id="lightboxImage" src="" alt="Enlarged memory">
+    <button id="nextPhoto" class="lightbox-arrow" type="button" aria-label="Next photo">›</button>
   </div>
 
-  <audio id="bgMusic" loop preload="none"></audio>
   <script src="script.js"></script>
 </body>
 </html>

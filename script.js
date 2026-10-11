@@ -1,155 +1,281 @@
 
-(() => {
-  const TOTAL_PHOTOS = 50;
-  const EXTENSION = "jpg"; // Change to "png" or "webp" if all photos use that format.
+const TOTAL_PHOTOS = 42;
+const PHOTO_EXTENSION = "jpg";
 
-  const captions = [
-    "my prettiest girl ♡", "that lovely smile", "my whole heart",
-    "my cutuuu", "my favourite human", "the girl I adore",
-    "pretty in every way", "my sunshine", "my sweetest thought",
-    "my Lakshita", "a face I could never tire of", "my soft spot",
-    "my beautiful babby", "my favourite view", "pure magic",
-    "my heart says you", "the cutest ever", "my little universe",
-    "my forever girl", "my happy place", "all kinds of pretty",
-    "my reason to smile", "my sweetheart", "my favourite person",
-    "a little bit of heaven", "my precious girl", "the prettiest soul",
-    "my comfort person", "my favourite notification", "my one and only",
-    "the girl in my dreams", "my beautiful wifey", "my reason to grin",
-    "the one I choose", "my lovely girl", "my world in one photo",
-    "my babbyygurl", "my heart's favourite", "you, always you",
-    "my sweetest blessing", "my little star", "a thousand butterflies",
-    "my forever crush", "the girl I keep choosing", "my everything",
-    "my favourite kind of beautiful", "my heart's home",
-    "the love of my life", "one year, endless love", "forever looks like you ♡"
-  ];
+const chapters = Array.from(document.querySelectorAll(".chapter"));
+const backButton = document.getElementById("backButton");
+const nextButton = document.getElementById("nextButton");
+const chapterCount = document.getElementById("chapterCount");
+const dots = Array.from(document.querySelectorAll(".dot"));
+const musicButton = document.getElementById("musicButton");
+const bgMusic = document.getElementById("bgMusic");
 
-  const gallery = document.getElementById("gallery");
-  const lightbox = document.getElementById("lightbox");
-  const largePhoto = document.getElementById("largePhoto");
-  const photoCaption = document.getElementById("photoCaption");
-  let current = 0;
+let currentChapter = 0;
+let currentPhoto = 1;
+let musicStartedByUser = false;
+let currentSong = "";
 
-  function renderGallery() {
-    for (let i = 1; i <= TOTAL_PHOTOS; i++) {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "photo-card";
-      card.style.setProperty("--tilt", `${[-1, .8, -.5, 1.1, .3][(i - 1) % 5]}deg`);
-      card.setAttribute("aria-label", `Open photo ${i}`);
+const captions = [
+  "My beautiful girl 💗",
+  "That lovely smile 🌸",
+  "My favourite face 🥹",
+  "A little piece of magic ✨",
+  "My pretty babby 💕",
+  "The girl of my dreams 🌙",
+  "My sunshine ☀️",
+  "Too cute for this universe 🪐",
+  "My favourite human 🫶",
+  "A whole heart of love 💌",
+  "My sweet Lakshita 🌷",
+  "Beautiful inside and out 💖",
+  "My reason to smile 😊",
+  "Cutie forever 🎀",
+  "My lovely girl 🌹",
+  "The prettiest soul 🦋",
+  "My happiness 💗",
+  "A face I'll never tire of 🥹",
+  "My princess 👑",
+  "My favourite view 🌸",
+  "A little angel 😇",
+  "My heart's favourite 💞",
+  "Simply unforgettable ✨",
+  "My gorgeous girl 💋",
+  "A dream come true 🌙",
+  "My sweetest blessing 🫶",
+  "My adorable babby 🧸",
+  "The glow in my universe 🌟",
+  "My forever favourite 💗",
+  "A thousand butterflies 🦋",
+  "My lovely sweetheart 💕",
+  "Prettiness overload 🎀",
+  "My world in one picture 🌎",
+  "A smile worth a million stars ✨",
+  "My one and only 💌",
+  "My little moon 🌙",
+  "My favourite kind of magic 🪄",
+  "The sweetest girl ever 🌷",
+  "My beautiful Lakshita 💖",
+  "A memory to treasure 📸",
+  "My heart, always 💗",
+  "Forever special to me ♾️"
+];
 
-      const img = document.createElement("img");
-      img.src = `photos/${i}.${EXTENSION}`;
-      img.alt = `Lakshita, photo ${i}`;
-      img.loading = i <= 6 ? "eager" : "lazy";
-      img.decoding = "async";
-      img.onerror = () => {
-        card.classList.add("missing");
-        img.onerror = null;
-        img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
-          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#38213d"/><text x="200" y="230" fill="#f7c5ff" font-size="28" text-anchor="middle">Photo ${i}</text><text x="200" y="270" fill="#ff9dce" font-size="20" text-anchor="middle">photos/${i}.${EXTENSION}</text><text x="200" y="330" fill="#ff9dce" font-size="40" text-anchor="middle">♡</text></svg>`
-        );
-      };
+// Build the 42-photo gallery.
+const gallery = document.getElementById("gallery");
 
-      const number = document.createElement("span");
-      number.className = "number";
-      number.textContent = String(i).padStart(2, "0");
+for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "photo-card";
+  card.setAttribute("aria-label", `Open photo ${i}: ${captions[i - 1]}`);
 
-      const caption = document.createElement("span");
-      caption.className = "caption";
-      caption.textContent = captions[i - 1];
+  const img = document.createElement("img");
+  img.src = `photos/${i}.${PHOTO_EXTENSION}`;
+  img.alt = captions[i - 1];
+  img.loading = "lazy";
+  img.decoding = "async";
 
-      card.append(img, number, caption);
-      card.addEventListener("click", () => openPhoto(i - 1));
-      gallery.appendChild(card);
+  // If a file is missing, show a clear placeholder instead of a broken icon.
+  img.addEventListener("error", () => {
+    img.removeAttribute("src");
+    img.alt = "Photo file not found";
+    img.style.display = "none";
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "photo-placeholder";
+    placeholder.textContent = `Add photo ${i}`;
+    placeholder.style.cssText =
+      "aspect-ratio:3/4;display:grid;place-items:center;" +
+      "padding:10px;background:#efd1e7;color:#71385f;" +
+      "border-radius:7px;font-size:12px;text-align:center;";
+
+    card.insertBefore(placeholder, caption);
+  });
+
+  const caption = document.createElement("span");
+  caption.className = "photo-caption";
+  caption.textContent = captions[i - 1];
+
+  card.append(img, caption);
+  card.addEventListener("click", () => openPhoto(i));
+  gallery.appendChild(card);
+}
+
+// Chapter navigation.
+function showChapter(index) {
+  if (index < 0 || index >= chapters.length) return;
+
+  currentChapter = index;
+
+  chapters.forEach((chapter, i) => {
+    chapter.classList.toggle("active", i === index);
+    chapter.setAttribute("aria-hidden", String(i !== index));
+  });
+
+  chapterCount.textContent = `Chapter ${index + 1} of ${chapters.length}`;
+  backButton.disabled = index === 0;
+
+  nextButton.disabled = false;
+  nextButton.textContent =
+    index === chapters.length - 1 ? "Start again ↻" : "Next →";
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+
+  // Return the chapter to its beginning.
+  chapters[index].scrollTop = 0;
+
+  // Change the soundtrack for the new chapter.
+  changeSong(chapters[index].dataset.song);
+}
+
+function nextChapter() {
+  if (currentChapter === chapters.length - 1) {
+    showChapter(0);
+    return;
+  }
+
+  showChapter(currentChapter + 1);
+}
+
+function previousChapter() {
+  if (currentChapter > 0) {
+    showChapter(currentChapter - 1);
+  }
+}
+
+nextButton.addEventListener("click", nextChapter);
+backButton.addEventListener("click", previousChapter);
+
+// Five different songs, one per chapter.
+function changeSong(songFile) {
+  if (!songFile || currentSong === songFile) return;
+
+  currentSong = songFile;
+  bgMusic.pause();
+  bgMusic.src = songFile;
+  bgMusic.load();
+
+  if (musicStartedByUser) {
+    bgMusic.play()
+      .then(updateMusicButton)
+      .catch(() => {
+        musicButton.textContent = "♫ Tap to play";
+      });
+  } else {
+    musicButton.textContent = "♫ Play music";
+  }
+}
+
+function updateMusicButton() {
+  musicButton.textContent = bgMusic.paused
+    ? "♫ Play music"
+    : "♫ Music on";
+}
+
+musicButton.addEventListener("click", async () => {
+  if (bgMusic.paused) {
+    musicStartedByUser = true;
+
+    try {
+      await bgMusic.play();
+      updateMusicButton();
+    } catch (error) {
+      musicButton.textContent = "♫ Try again";
     }
+  } else {
+    bgMusic.pause();
+    updateMusicButton();
   }
+});
 
-  function openPhoto(index) {
-    current = (index + TOTAL_PHOTOS) % TOTAL_PHOTOS;
-    largePhoto.src = `photos/${current + 1}.${EXTENSION}`;
-    largePhoto.alt = `Lakshita, photo ${current + 1}`;
-    photoCaption.textContent = `${captions[current]} · ${current + 1} / ${TOTAL_PHOTOS}`;
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+bgMusic.addEventListener("ended", updateMusicButton);
+bgMusic.addEventListener("pause", updateMusicButton);
+bgMusic.addEventListener("play", updateMusicButton);
+
+// Photo lightbox.
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxCaption = document.getElementById("lightboxCaption");
+
+function openPhoto(number) {
+  currentPhoto = number;
+  updateLightbox();
+  lightbox.hidden = false;
+  document.getElementById("closeLightbox").focus();
+}
+
+function updateLightbox() {
+  lightboxImage.src = `photos/${currentPhoto}.${PHOTO_EXTENSION}`;
+  lightboxImage.alt = captions[currentPhoto - 1];
+  lightboxCaption.textContent =
+    `${currentPhoto} / ${TOTAL_PHOTOS} — ${captions[currentPhoto - 1]}`;
+}
+
+function closePhoto() {
+  lightbox.hidden = true;
+  lightboxImage.removeAttribute("src");
+}
+
+function movePhoto(direction) {
+  currentPhoto =
+    ((currentPhoto - 1 + direction + TOTAL_PHOTOS) % TOTAL_PHOTOS) + 1;
+  updateLightbox();
+}
+
+document.getElementById("closeLightbox").addEventListener("click", closePhoto);
+document.getElementById("previousPhoto").addEventListener("click", () => movePhoto(-1));
+document.getElementById("nextPhoto").addEventListener("click", () => movePhoto(1));
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) closePhoto();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (!lightbox.hidden) {
+    if (event.key === "Escape") closePhoto();
+    if (event.key === "ArrowLeft") movePhoto(-1);
+    if (event.key === "ArrowRight") movePhoto(1);
+  } else {
+    if (event.key === "ArrowRight") nextChapter();
+    if (event.key === "ArrowLeft") previousChapter();
   }
+});
 
-  function closePhoto() {
-    lightbox.classList.remove("open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+// Virtual hug.
+document.getElementById("hugButton").addEventListener("click", () => {
+  const message = document.getElementById("hugMessage");
+  message.hidden = false;
+  document.getElementById("hugButton").textContent = "Hug delivered! 💗";
+
+  for (let i = 0; i < 12; i++) {
+    createFloatingHeart();
   }
+});
 
-  document.getElementById("closePhoto").addEventListener("click", closePhoto);
-  document.getElementById("prevPhoto").addEventListener("click", () => openPhoto(current - 1));
-  document.getElementById("nextPhoto").addEventListener("click", () => openPhoto(current + 1));
+// Replay from the beginning.
+document.getElementById("replayButton").addEventListener("click", () => {
+  showChapter(0);
+  chapters[0].scrollTop = 0;
+});
 
-  lightbox.addEventListener("click", e => {
-    if (e.target === lightbox) closePhoto();
-  });
+// Floating hearts.
+const floatingHearts = document.getElementById("floatingHearts");
 
-  document.addEventListener("keydown", e => {
-    if (!lightbox.classList.contains("open")) return;
-    if (e.key === "Escape") closePhoto();
-    if (e.key === "ArrowLeft") openPhoto(current - 1);
-    if (e.key === "ArrowRight") openPhoto(current + 1);
-  });
+function createFloatingHeart() {
+  const heart = document.createElement("span");
+  heart.className = "floating-heart";
+  heart.textContent = ["♥", "♡", "💗", "✧"][Math.floor(Math.random() * 4)];
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${12 + Math.random() * 19}px`;
+  heart.style.animationDuration = `${5 + Math.random() * 5}s`;
 
-  // Floating hearts
-  const heartLayer = document.getElementById("hearts");
+  floatingHearts.appendChild(heart);
+  heart.addEventListener("animationend", () => heart.remove());
+}
 
-  function spawnHeart() {
-    if (document.hidden) return;
-    const heart = document.createElement("span");
-    heart.className = "floating-heart";
-    heart.textContent = Math.random() > .5 ? "♥" : "♡";
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.fontSize = `${12 + Math.random() * 17}px`;
-    heart.style.setProperty("--duration", `${7 + Math.random() * 5}s`);
-    heartLayer.appendChild(heart);
-    setTimeout(() => heart.remove(), 13000);
-  }
+setInterval(createFloatingHeart, 900);
 
-  for (let i = 0; i < 8; i++) setTimeout(spawnHeart, i * 400);
-  setInterval(spawnHeart, 1300);
-
-  // Virtual hug
-  const hugs = [
-    "Biggg warm hug for my babbyyy 🫂💗",
-    "You're loved more than you know, cutuuu ♡",
-    "One little breath at a time, my sweetheart ✨",
-    "Your Rishuuu is cheering for you always 💞"
-  ];
-
-  document.getElementById("hugButton").addEventListener("click", () => {
-    document.getElementById("hugMessage").textContent =
-      hugs[Math.floor(Math.random() * hugs.length)];
-    for (let i = 0; i < 8; i++) setTimeout(spawnHeart, i * 100);
-  });
-
-  document.getElementById("loveButton").addEventListener("click", () => {
-    document.getElementById("finalMessage").textContent =
-      "I loveeeee youuu, my Lakshitaaa. Today, tomorrow, and all the little days after that. 💗";
-    for (let i = 0; i < 15; i++) setTimeout(spawnHeart, i * 90);
-  });
-
-  // Music starts after a tap because most browsers block autoplay.
-  const music = document.getElementById("bgMusic");
-  const musicButton = document.getElementById("musicButton");
-
-  musicButton.addEventListener("click", async () => {
-    if (music.paused) {
-      try {
-        await music.play();
-        musicButton.textContent = "♫ Music on";
-      } catch {
-        musicButton.textContent = "♫ Check song.mp3";
-      }
-    } else {
-      music.pause();
-      musicButton.textContent = "♫ Our song";
-    }
-  });
-
-  renderGallery();
-})();
+// Start on Chapter 1.
+showChapter(0);

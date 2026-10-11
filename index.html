@@ -1,163 +1,671 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#160d2c">
-  <title>Our Forever Universe 💗</title>
+:root {
+  --pink: #ff9acb;
+  --bright-pink: #ff68b0;
+  --lavender: #c9a8ff;
+  --white: #fff5fc;
+  --muted: #d8c6e7;
+  --panel: rgba(255, 255, 255, 0.075);
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
+* {
+  box-sizing: border-box;
+}
 
-<body>
-  <div class="stars" aria-hidden="true"></div>
-  <div id="floatingHearts" aria-hidden="true"></div>
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
 
-  <header class="topbar">
-    <div class="logo">R <span>♡</span> L</div>
-    <div class="topbar-right">
-      <span id="chapterCount">Chapter 1 of 5</span>
-      <button id="musicButton" class="music-button" type="button">♫ Play music</button>
-    </div>
-  </header>
+body {
+  font-family: "DM Sans", sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 20% 10%, #402050 0%, transparent 42%),
+    radial-gradient(ellipse at 85% 75%, #321344 0%, transparent 40%),
+    linear-gradient(145deg, #10091e, #1b0d2d 55%, #11091f);
+  overflow: hidden;
+}
 
-  <main>
-    <!-- CHAPTER 1 -->
-    <section class="chapter active" id="chapter1" data-song="song1.mp3">
-      <div class="chapter-content hero">
-        <div class="eyebrow">A little universe, made just for you</div>
-        <div class="heart-orbit"><span>♥</span></div>
-        <h1>Our Forever<br><span>Universe</span></h1>
-        <p class="subtitle">For my Lakshita, my favourite person in every universe.</p>
+button {
+  font: inherit;
+}
 
-        <div class="glass-card">
-          <p class="script-heading">My dearest Lakshita 💌</p>
-          <p>
-            If I could give you one thing in this world, I would give you
-            the ability to see yourself through my eyes. Then you would
-            understand how special you are to me, how your smile makes
-            ordinary moments beautiful, and how lucky I feel to have you
-            in my life. This little universe is made with all my love,
-            just for you.
-          </p>
-          <p class="signature">Forever yours, Rishuuu 💗</p>
-        </div>
-        <div class="hint">A little surprise is waiting for you ↓</div>
-      </div>
-    </section>
+button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
 
-    <!-- CHAPTER 2 -->
-    <section class="chapter" id="chapter2" data-song="song2.mp3">
-      <div class="chapter-content gallery-chapter">
-        <div class="eyebrow">Every picture holds a little magic</div>
-        <h2>My Beautiful <span>Lakshita</span> 📸</h2>
-        <p class="subtitle">42 little reminders of how beautiful you are.</p>
-        <div id="gallery" class="gallery"></div>
-        <p class="gallery-note">Every photo is special, because it's you. 💗</p>
-      </div>
-    </section>
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.48;
+  background-image:
+    radial-gradient(2px 2px at 15% 25%, white 45%, transparent 55%),
+    radial-gradient(2px 2px at 80% 18%, white 45%, transparent 55%),
+    radial-gradient(1px 1px at 65% 65%, white 45%, transparent 55%),
+    radial-gradient(2px 2px at 35% 80%, white 45%, transparent 55%),
+    radial-gradient(1px 1px at 92% 52%, white 45%, transparent 55%),
+    radial-gradient(1px 1px at 12% 70%, white 45%, transparent 55%);
+  background-size: 230px 230px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
 
-    <!-- CHAPTER 3 -->
-    <section class="chapter" id="chapter3" data-song="song3.mp3">
-      <div class="chapter-content centered">
-        <div class="eyebrow">Whenever the world feels heavy</div>
-        <div class="big-emoji">🫂</div>
-        <h2>Your Safe <span>Place</span></h2>
-        <p class="subtitle">You never have to be strong every single moment, babby.</p>
+#floatingHearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
 
-        <div class="glass-card">
-          <p>
-            My love, on your difficult days, please remember that you
-            don't have to handle everything alone. You deserve patience,
-            kindness, rest, and all the little things that make your heart
-            feel lighter. I might not always know the perfect words, but
-            I want to keep learning how to understand you, listen to you,
-            and make you feel loved.
-          </p>
-          <p class="signature">Come here, meri jaan. Virtual huggg! 💗</p>
-          <button id="hugButton" class="glow-button" type="button">Open your hug 🫂</button>
-          <p id="hugMessage" class="hug-message" hidden>
-            Sending the biggest, warmest hug to my babbyyy! 🤗💗
-          </p>
-        </div>
-      </div>
-    </section>
+.floating-heart {
+  position: absolute;
+  bottom: -35px;
+  color: #ff8fc9;
+  opacity: 0;
+  animation: floatUp 8s linear forwards;
+  text-shadow: 0 0 14px #ff68b0;
+}
 
-    <!-- CHAPTER 4 -->
-    <section class="chapter" id="chapter4" data-song="song4.mp3">
-      <div class="chapter-content centered">
-        <div class="eyebrow">Not just words, but promises</div>
-        <div class="big-emoji">💍</div>
-        <h2>My Promises <span>Forever</span></h2>
-        <p class="subtitle">Little promises from your Rishuuu, with all his heart.</p>
+.topbar {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 5%;
+  background: rgba(16, 9, 30, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+}
 
-        <div class="promise-list">
-          <div class="promise">♡ I promise to keep listening, even when the words are difficult.</div>
-          <div class="promise">♡ I promise to celebrate your happiness and support your dreams.</div>
-          <div class="promise">♡ I promise to respect your feelings, your space, and your individuality.</div>
-          <div class="promise">♡ I promise to keep choosing honesty, kindness, and effort.</div>
-          <div class="promise">♡ I promise to never stop finding little ways to make you smile.</div>
-        </div>
-        <p class="signature">One heart, a thousand little promises. 💗</p>
-      </div>
-    </section>
+.logo {
+  font-family: "Great Vibes", cursive;
+  font-size: 30px;
+  color: white;
+  white-space: nowrap;
+}
 
-    <!-- CHAPTER 5 -->
-    <section class="chapter" id="chapter5" data-song="song5.mp3">
-      <div class="chapter-content centered finale">
-        <div class="eyebrow">And our story keeps going...</div>
-        <div class="final-heart">♥</div>
-        <h2>In Every Universe,<br><span>It's You</span></h2>
-        <p class="subtitle">
-          Across a thousand stars, a million dreams, and every possible universe...
-        </p>
+.logo span,
+.forever-text span {
+  color: var(--pink);
+}
 
-        <div class="glass-card">
-          <p class="script-heading">My forever person 💌</p>
-          <p>
-            Lakshita, thank you for being a beautiful part of my life.
-            I hope this little website reminds you that you are appreciated,
-            cherished, and loved for who you are. No animation or words could
-            ever capture everything I feel, but every little detail here
-            carries a piece of my heart.
-          </p>
-          <h3 class="forever-text">Rishabh <span>♡</span> Lakshita</h3>
-          <p class="signature">I loveeeee youuu, my sweethearttt! 💗🌙</p>
-        </div>
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-        <button id="replayButton" class="glow-button" type="button">Replay our universe ↻</button>
-      </div>
-    </section>
-  </main>
+#chapterCount {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
 
-  <nav class="navigation" aria-label="Chapter navigation">
-    <button id="backButton" class="nav-button" type="button" disabled>← Back</button>
-    <div id="chapterDots" class="chapter-dots" aria-label="Chapter progress">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-    <button id="nextButton" class="nav-button primary" type="button">Next →</button>
-  </nav>
+.music-button,
+.nav-button,
+.glow-button {
+  border: 1px solid rgba(255, 179, 220, 0.42);
+  border-radius: 999px;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
 
-  <div id="lightbox" class="lightbox" hidden>
-    <button id="closeLightbox" class="lightbox-close" type="button" aria-label="Close photo">×</button>
-    <button id="previousPhoto" class="lightbox-arrow left" type="button" aria-label="Previous photo">‹</button>
-    <figure>
-      <img id="lightboxImage" src="" alt="Lakshita">
-      <figcaption id="lightboxCaption"></figcaption>
-    </figure>
-    <button id="nextPhoto" class="lightbox-arrow right" type="button" aria-label="Next photo">›</button>
-  </div>
+.music-button {
+  padding: 9px 13px;
+  font-size: 12px;
+  white-space: nowrap;
+}
 
-  <audio id="bgMusic" loop preload="none"></audio>
+.music-button:hover,
+.nav-button:hover:not(:disabled),
+.glow-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 104, 176, 0.22);
+  box-shadow: 0 0 20px rgba(255, 104, 176, 0.2);
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+main {
+  position: relative;
+  z-index: 2;
+}
+
+.chapter {
+  position: fixed;
+  inset: 64px 0 76px;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #8c527e transparent;
+}
+
+.chapter.active {
+  display: block;
+  animation: chapterIn 0.55s ease both;
+}
+
+.chapter-content {
+  width: min(900px, 100%);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 34px 24px 44px;
+}
+
+.hero,
+.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero {
+  max-width: 760px;
+  margin: auto;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 14px;
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -2px;
+}
+
+h1 span,
+h2 span {
+  color: var(--pink);
+  text-shadow: 0 0 28px rgba(255, 104, 176, 0.32);
+}
+
+h2 {
+  margin-bottom: 12px;
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.15;
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 580px;
+  margin: 0 auto 26px;
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.heart-orbit {
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  margin: 12px 0 22px;
+  border: 1px solid rgba(255, 154, 203, 0.55);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(255, 104, 176, 0.15), inset 0 0 24px rgba(255, 104, 176, 0.12);
+  animation: orbitPulse 2.5s ease-in-out infinite;
+}
+
+.heart-orbit span {
+  color: #ff80be;
+  font-size: 43px;
+  text-shadow: 0 0 25px #ff68b0;
+  animation: heartbeat 1.5s infinite;
+}
+
+.glass-card {
+  width: min(650px, 100%);
+  padding: clamp(20px, 5vw, 34px);
+  border: 1px solid rgba(255, 190, 224, 0.18);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(12px);
+  text-align: left;
+}
+
+.glass-card p {
+  color: #f3e4f3;
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+.script-heading,
+.signature {
+  color: var(--pink) !important;
+  font-family: "Great Vibes", cursive;
+  font-size: 28px !important;
+}
+
+.signature {
+  margin: 18px 0 0;
+  text-align: center;
+}
+
+.hint {
+  margin-top: 22px;
+  color: #bda8ce;
+  font-size: 12px;
+  animation: bob 2s infinite;
+}
+
+.gallery-chapter {
+  width: min(1120px, 100%);
+  padding-top: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.photo-card {
+  min-width: 0;
+  padding: 8px 8px 13px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 13px;
+  background: rgba(255, 245, 252, 0.95);
+  color: #49213e;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 10px 30px rgba(255, 104, 176, 0.22);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #f9c9e2, #c7a7ef);
+}
+
+.photo-card .photo-caption {
+  display: block;
+  padding: 10px 2px 0;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.gallery-note {
+  margin-top: 24px;
+  color: var(--pink);
+  text-align: center;
+}
+
+.big-emoji {
+  margin: 8px 0 15px;
+  font-size: clamp(55px, 12vw, 85px);
+  filter: drop-shadow(0 0 22px rgba(255, 120, 190, 0.3));
+}
+
+.glow-button {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 13px 22px;
+  background: linear-gradient(110deg, #e75eaa, #8b5be5);
+  border: 0;
+  font-weight: 700;
+}
+
+.hug-message {
+  margin: 20px 0 0 !important;
+  color: #ffc5e5 !important;
+  text-align: center;
+  animation: chapterIn 0.4s ease both;
+}
+
+.promise-list {
+  display: grid;
+  width: min(680px, 100%);
+  gap: 13px;
+  margin: 16px auto;
+  text-align: left;
+}
+
+.promise {
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 175, 216, 0.18);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.065);
+  color: #f6e9f6;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.final-heart {
+  margin: 10px 0 15px;
+  color: #ff7cbb;
+  font-size: 72px;
+  text-shadow: 0 0 30px #ff68b0;
+  animation: heartbeat 1.5s infinite;
+}
+
+.forever-text {
+  margin: 24px 0 8px;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(34px, 7vw, 49px);
+  text-align: center;
+}
+
+.navigation {
+  position: fixed;
+  z-index: 6;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(15px, 5vw, 45px);
+  padding: 12px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(16, 9, 30, 0.86);
+  backdrop-filter: blur(16px);
+}
+
+.nav-button {
+  min-width: 100px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-button.primary {
+  background: linear-gradient(110deg, #e75eaa, #8b5be5);
+  border-color: transparent;
+}
+
+.nav-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.chapter-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #77647f;
+  transition: all 0.25s;
+}
+
+.dot.active {
+  width: 22px;
+  border-radius: 99px;
+  background: var(--pink);
+  box-shadow: 0 0 12px rgba(255, 104, 176, 0.7);
+}
+
+.lightbox {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 12px;
+  background: rgba(8, 4, 15, 0.96);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(78vw, 680px);
+  max-height: 85vh;
+  margin: 0;
+}
+
+.lightbox figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 35px rgba(255, 104, 176, 0.18);
+}
+
+.lightbox figcaption {
+  padding-top: 12px;
+  color: var(--pink);
+  text-align: center;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 18px;
+}
+
+.lightbox-arrow.left {
+  left: 10px;
+}
+
+.lightbox-arrow.right {
+  right: 10px;
+}
+
+@keyframes chapterIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes twinkle {
+  from { opacity: 0.25; }
+  to { opacity: 0.65; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+}
+
+@keyframes orbitPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,104,176,0.12); }
+  50% { box-shadow: 0 0 38px rgba(255,104,176,0.3); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+  12% { opacity: 0.7; }
+  85% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-110vh) rotate(35deg); }
+}
+
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .chapter-content {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    height: 58px;
+    padding: 0 13px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .topbar-right {
+    gap: 7px;
+  }
+
+  #chapterCount {
+    font-size: 10px;
+  }
+
+  .music-button {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .chapter {
+    inset: 58px 0 72px;
+  }
+
+  .chapter-content {
+    padding: 28px 15px 34px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 12vw, 62px);
+  }
+
+  h2 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .glass-card {
+    padding: 20px 17px;
+    border-radius: 20px;
+  }
+
+  .glass-card p {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .photo-card {
+    padding: 6px 6px 10px;
+  }
+
+  .photo-card .photo-caption {
+    font-size: 10px;
+  }
+
+  .navigation {
+    min-height: 72px;
+    gap: 12px;
+    padding: 10px 12px;
+  }
+
+  .nav-button {
+    min-width: 80px;
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+
+  .chapter-dots {
+    gap: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .dot.active {
+    width: 17px;
+  }
+
+  .promise {
+    padding: 13px;
+    font-size: 12px;
+  }
+
+  .lightbox-arrow.left {
+    left: 5px;
+  }
+
+  .lightbox-arrow.right {
+    right: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

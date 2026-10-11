@@ -23,6 +23,7 @@
   </header>
 
   <main id="chapterViewport">
+
     <!-- CHAPTER 1 -->
     <section class="chapter active" data-chapter="0">
       <div class="chapter-content hero">
@@ -124,6 +125,7 @@
     <section class="chapter" data-chapter="2">
       <div class="chapter-content centered">
         <p class="eyebrow">CHAPTER THREE · YOUR SAFE LITTLE PLACE</p>
+
         <div class="teddy-scene" aria-label="A cute teddy bear holding a heart">
           <div class="teddy">🧸</div>
           <div class="teddy-heart">💗</div>
@@ -213,17 +215,35 @@
         </article>
 
         <div class="promise-grid">
-          <div class="promise-card"><span>♡</span><h3>I promise to listen</h3><p>Your feelings deserve patience, care, and my full attention.</p></div>
-          <div class="promise-card"><span>🌷</span><h3>I promise to respect you</h3><p>Your dreams, choices, boundaries, and individuality matter.</p></div>
-          <div class="promise-card"><span>✨</span><h3>I promise to keep learning</h3><p>I'll keep growing with you, not expect either of us to be perfect.</p></div>
-          <div class="promise-card"><span>💌</span><h3>I promise to show up</h3><p>I'll keep making time for honest conversations and little moments.</p></div>
+          <div class="promise-card">
+            <span>♡</span>
+            <h3>I promise to listen</h3>
+            <p>Your feelings deserve patience, care, and my full attention.</p>
+          </div>
+
+          <div class="promise-card">
+            <span>🌷</span>
+            <h3>I promise to respect you</h3>
+            <p>Your dreams, choices, boundaries, and individuality matter.</p>
+          </div>
+
+          <div class="promise-card">
+            <span>✨</span>
+            <h3>I promise to keep learning</h3>
+            <p>I'll keep growing with you, not expect either of us to be perfect.</p>
+          </div>
+
+          <div class="promise-card">
+            <span>💌</span>
+            <h3>I promise to show up</h3>
+            <p>I'll keep making time for honest conversations and little moments.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CHAPTER 5 -->
+    <!-- CHAPTER 5: FINALE WITHOUT FIREWORKS -->
     <section class="chapter finale" data-chapter="4">
-      <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
       <div class="finale-glow" aria-hidden="true"></div>
 
       <div class="chapter-content centered finale-content">
@@ -232,7 +252,9 @@
         <div class="final-heart" aria-hidden="true">♥</div>
         <p class="script-title">To my favourite person in every universe…</p>
 
-        <h2 class="anniversary-title">HAPPYYY 1 YEAR<br><span>ANNIVERSARYYY!</span></h2>
+        <h2 class="anniversary-title">
+          HAPPYYY 1 YEAR<br><span>ANNIVERSARYYY!</span>
+        </h2>
 
         <p class="subtitle finale-subtitle">
           Myyy cutuu babbyjaan, you make my world feel a little more beautiful. 💖
@@ -286,21 +308,28 @@
           </p>
         </article>
 
-        <button class="cute-button fireworks-button" id="fireworksButton" type="button">
-          Make the sky sparkle again ✨
-        </button>
-
         <p class="signature">Forever sending love, your Rishuuu ♡</p>
       </div>
     </section>
+
   </main>
 
   <footer class="bottom-nav">
-    <button id="backButton" class="nav-button back-button" type="button" disabled>← Back</button>
+    <button id="backButton" class="nav-button back-button" type="button" disabled>
+      ← Back
+    </button>
+
     <div class="chapter-dots" id="chapterDots" aria-label="Chapter progress">
-      <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
-    <button id="nextButton" class="nav-button next-button" type="button">Next →</button>
+
+    <button id="nextButton" class="nav-button next-button" type="button">
+      Next →
+    </button>
   </footer>
 
   <audio id="bgMusic" preload="auto" loop></audio>

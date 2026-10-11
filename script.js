@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSong = "";
   let musicUnlocked = false;
   let currentPhoto = 1;
-  let fireworksAnimation = 0;
-  let fireworks = [];
-  let lastFireworksTime = 0;
 
   const totalPhotos = 42;
   const songs = [
@@ -25,26 +22,29 @@ document.addEventListener("DOMContentLoaded", () => {
     "song5.mp3"
   ];
 
-  // Change this if your real files use .png, .webp, etc.
   const PHOTO_EXTENSION = "jpg";
 
-  // Create the starry background.
+  // STAR FIELD
   const starField = document.getElementById("starField");
 
-  for (let i = 0; i < 95; i++) {
-    const star = document.createElement("span");
-    star.className = "star";
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.setProperty("--duration", `${2 + Math.random() * 4}s`);
-    star.style.animationDelay = `${Math.random() * 4}s`;
-    starField.appendChild(star);
+  if (starField) {
+    for (let i = 0; i < 95; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.setProperty("--duration", `${2 + Math.random() * 4}s`);
+      star.style.animationDelay = `${Math.random() * 4}s`;
+      starField.appendChild(star);
+    }
   }
 
-  // Floating hearts and petals continue throughout the chapters.
+  // FLOATING HEARTS AND PETALS
   const decor = document.getElementById("floatingDecor");
 
   function createFloatingDecor() {
+    if (!decor) return;
+
     const item = document.createElement("span");
     const isHeart = Math.random() > 0.35;
 
@@ -64,8 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.setInterval(createFloatingDecor, 650);
 
-  // Generate 42 photos from the MAIN repository folder.
-  // Expected names: 1.jpg, 2.jpg ... 42.jpg.
+  // 42 PHOTO GALLERY
   const photoCards = [];
 
   if (gallery) {
@@ -87,12 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
       img.addEventListener("error", () => {
         card.replaceChildren();
 
-        const errorMessage = document.createElement("div");
-        errorMessage.className = "photo-error";
-        errorMessage.textContent =
+        const message = document.createElement("div");
+        message.className = "photo-error";
+        message.textContent =
           `Photo ${i} couldn't load 💗 Check ${i}.${PHOTO_EXTENSION}`;
 
-        card.appendChild(errorMessage);
+        card.appendChild(message);
         console.warn(`Photo not found: ${i}.${PHOTO_EXTENSION}`);
       }, { once: true });
 
@@ -102,22 +101,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Music: browsers may block sound until the visitor interacts.
-  bgMusic.loop = true;
-  bgMusic.volume = 0.65;
-  bgMusic.preload = "auto";
+  // BACKGROUND MUSIC
+  if (bgMusic) {
+    bgMusic.loop = true;
+    bgMusic.volume = 0.65;
+    bgMusic.preload = "auto";
+  }
 
   function playCurrentSong() {
-    if (!currentSong) return;
+    if (!bgMusic || !currentSong) return;
 
     bgMusic.play().catch(() => {
-      // A user gesture may be required by the browser.
+      // Browsers can require a user gesture before audio playback.
     });
   }
 
   function changeSong(index) {
     const filename = songs[index];
-    if (!filename || filename === currentSong) {
+    if (!filename || !bgMusic) return;
+
+    if (filename === currentSong) {
       if (musicUnlocked) playCurrentSong();
       return;
     }
@@ -125,15 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong = filename;
     bgMusic.src = filename;
     bgMusic.load();
-
-    // Attempt autoplay when entering each chapter.
     playCurrentSong();
   }
 
-  // Attempt autoplay on initial load.
   changeSong(0);
 
-  // If autoplay was blocked, start after the first user interaction.
   function unlockMusic() {
     if (musicUnlocked) return;
     musicUnlocked = true;
@@ -143,36 +142,60 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("pointerdown", unlockMusic, { once: true });
   document.addEventListener("keydown", unlockMusic, { once: true });
 
-  // Chapter navigation.
+  // =========================================
+  // PAGE NAVIGATION
+  // =========================================
+
   function showChapter(index) {
-    currentChapter = Math.max(0, Math.min(chapters.length - 1, index));
+    if (!chapters.length) return;
+
+    currentChapter = Math.max(
+      0,
+      Math.min(chapters.length - 1, index)
+    );
 
     chapters.forEach((chapter, i) => {
       const active = i === currentChapter;
+
       chapter.classList.toggle("active", active);
       chapter.setAttribute("aria-hidden", String(!active));
 
       if (active) chapter.scrollTop = 0;
     });
 
-    counter.textContent = `Chapter ${currentChapter + 1} of ${chapters.length}`;
-    backButton.disabled = currentChapter === 0;
-    nextButton.disabled = currentChapter === chapters.length - 1;
+    if (counter) {
+      counter.textContent =
+        `Chapter ${currentChapter + 1} of ${chapters.length}`;
+    }
 
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentChapter));
+    if (backButton) backButton.disabled = currentChapter === 0;
+    if (nextButton) {
+      nextButton.disabled = currentChapter === chapters.length - 1;
+    }
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentChapter);
+    });
 
     changeSong(currentChapter);
 
+    // Start fireworks only on the last chapter.
     if (currentChapter === 4) {
-      window.setTimeout(() => launchFireworks(8), 300);
-      window.setTimeout(() => launchFireworks(8), 1400);
+      startFireworks();
+    } else {
+      stopFireworks();
     }
   }
 
-  backButton.addEventListener("click", () => showChapter(currentChapter - 1));
-  nextButton.addEventListener("click", () => showChapter(currentChapter + 1));
+  backButton?.addEventListener("click", () => {
+    showChapter(currentChapter - 1);
+  });
 
-  // Virtual hug button.
+  nextButton?.addEventListener("click", () => {
+    showChapter(currentChapter + 1);
+  });
+
+  // VIRTUAL HUG
   const hugButton = document.getElementById("hugButton");
   const hugMessage = document.getElementById("hugMessage");
 
@@ -187,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Photo lightbox.
+  // PHOTO LIGHTBOX
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = document.getElementById("lightboxImage");
   const closeLightbox = document.getElementById("closeLightbox");
@@ -195,17 +218,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextPhoto = document.getElementById("nextPhoto");
 
   function openPhoto(number) {
+    if (!lightbox || !lightboxImage) return;
+
     currentPhoto = number;
     updateLightbox();
     lightbox.hidden = false;
   }
 
   function updateLightbox() {
+    if (!lightboxImage) return;
+
     lightboxImage.src = `${currentPhoto}.${PHOTO_EXTENSION}`;
     lightboxImage.alt = `Lakshita memory ${currentPhoto}`;
   }
 
   function closePhoto() {
+    if (!lightbox || !lightboxImage) return;
+
     lightbox.hidden = true;
     lightboxImage.removeAttribute("src");
   }
@@ -213,69 +242,107 @@ document.addEventListener("DOMContentLoaded", () => {
   function movePhoto(amount) {
     currentPhoto =
       ((currentPhoto - 1 + amount + totalPhotos) % totalPhotos) + 1;
+
     updateLightbox();
   }
 
-  closeLightbox.addEventListener("click", closePhoto);
-  previousPhoto.addEventListener("click", () => movePhoto(-1));
-  nextPhoto.addEventListener("click", () => movePhoto(1));
+  closeLightbox?.addEventListener("click", closePhoto);
+  previousPhoto?.addEventListener("click", () => movePhoto(-1));
+  nextPhoto?.addEventListener("click", () => movePhoto(1));
 
-  lightbox.addEventListener("click", event => {
+  lightbox?.addEventListener("click", event => {
     if (event.target === lightbox) closePhoto();
   });
 
   document.addEventListener("keydown", event => {
-    if (lightbox.hidden) return;
+    if (!lightbox || lightbox.hidden) return;
 
     if (event.key === "Escape") closePhoto();
     if (event.key === "ArrowLeft") movePhoto(-1);
     if (event.key === "ArrowRight") movePhoto(1);
   });
 
-  // Fireworks for the final anniversary chapter.
+  // =========================================
+  // PAGE 5 — OPTIMIZED FIREWORKS FINALE 🎆
+  // =========================================
+
   const canvas = document.getElementById("fireworksCanvas");
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas?.getContext("2d");
   const fireworksButton = document.getElementById("fireworksButton");
 
-  function resizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let fireworksAnimation = 0;
+  let fireworks = [];
+  let lastFireworksTime = 0;
+  let fireworksRunning = false;
+  let launchClock = 0;
+  let lastResizeWidth = 0;
+  let lastResizeHeight = 0;
 
-    canvas.width = Math.max(1, Math.round(rect.width * dpr));
-    canvas.height = Math.max(1, Math.round(rect.height * dpr));
+  const MAX_PARTICLES = 320;
+  const MAX_BURSTS_PER_CLICK = 5;
+  const FIREWORK_COLORS = [
+    "#ff4da6", "#ffd166", "#ffffff",
+    "#c084fc", "#ff6b6b", "#7df9ff"
+  ];
+
+  function resizeCanvas() {
+    if (!canvas || !ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    lastResizeWidth = rect.width || window.innerWidth;
+    lastResizeHeight = rect.height || window.innerHeight;
+
+    canvas.width = Math.max(1, Math.round(lastResizeWidth * dpr));
+    canvas.height = Math.max(1, Math.round(lastResizeHeight * dpr));
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
+  function launchFireworks(count = 4) {
+    if (!canvas || !ctx || !fireworksRunning) return;
 
-  function launchFireworks(count = 5) {
     const rect = canvas.getBoundingClientRect();
+    const width = rect.width || window.innerWidth;
+    const height = rect.height || window.innerHeight;
 
-    for (let burst = 0; burst < count; burst++) {
-      const x = Math.random() * rect.width;
-      const y = 40 + Math.random() * rect.height * 0.62;
-      const hue = 285 + Math.random() * 70;
-      const particleCount = 35 + Math.floor(Math.random() * 24);
+    const burstCount = Math.min(count, MAX_BURSTS_PER_CLICK);
+
+    for (let burst = 0; burst < burstCount; burst++) {
+      const remaining = MAX_PARTICLES - fireworks.length;
+      if (remaining <= 0) break;
+
+      const x = Math.random() * width;
+      const y = 40 + Math.random() * height * 0.58;
+      const hue =
+        FIREWORK_COLORS[
+          Math.floor(Math.random() * FIREWORK_COLORS.length)
+        ];
+
+      const particleCount = Math.min(
+        32 + Math.floor(Math.random() * 15),
+        remaining
+      );
 
       for (let i = 0; i < particleCount; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 1.1 + Math.random() * 4.2;
+        const speed = 1.1 + Math.random() * 3.7;
 
         fireworks.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          life: 50 + Math.random() * 35,
-          maxLife: 85,
-          hue: hue + Math.random() * 25,
-          size: 1.3 + Math.random() * 2.1
+          life: 48 + Math.random() * 25,
+          maxLife: 73,
+          color: hue,
+          size: 1.2 + Math.random() * 1.8
         });
       }
     }
 
+    // Start exactly one animation loop.
     if (!fireworksAnimation) {
       lastFireworksTime = 0;
       fireworksAnimation = requestAnimationFrame(drawFireworks);
@@ -285,44 +352,126 @@ document.addEventListener("DOMContentLoaded", () => {
   function drawFireworks(time) {
     fireworksAnimation = 0;
 
+    if (!fireworksRunning || !ctx || !canvas) return;
+
     const rect = canvas.getBoundingClientRect();
-    const delta = lastFireworksTime ? Math.min((time - lastFireworksTime) / 16.67, 2) : 1;
+    const delta = lastFireworksTime
+      ? Math.min((time - lastFireworksTime) / 16.67, 2)
+      : 1;
+
     lastFireworksTime = time;
 
     ctx.clearRect(0, 0, rect.width, rect.height);
 
-    fireworks = fireworks.filter(particle => particle.life > 0);
+    for (let i = fireworks.length - 1; i >= 0; i--) {
+      const particle = fireworks[i];
 
-    for (const particle of fireworks) {
       particle.x += particle.vx * delta;
       particle.y += particle.vy * delta;
       particle.vy += 0.035 * delta;
-      particle.vx *= 0.99;
+      particle.vx *= Math.pow(0.99, delta);
       particle.life -= delta;
 
-      const alpha = Math.max(0, particle.life / particle.maxLife);
+      if (particle.life <= 0) {
+        fireworks.splice(i, 1);
+        continue;
+      }
+
+      const alpha = Math.max(
+        0,
+        Math.min(1, particle.life / particle.maxLife)
+      );
+
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = particle.color;
       ctx.beginPath();
-      ctx.fillStyle = `hsla(${particle.hue}, 100%, 75%, ${alpha})`;
-      ctx.shadowBlur = 12;
-      ctx.shadowColor = `hsla(${particle.hue}, 100%, 70%, ${alpha})`;
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.arc(
+        particle.x,
+        particle.y,
+        particle.size,
+        0,
+        Math.PI * 2
+      );
       ctx.fill();
     }
 
-    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
 
-    if (fireworks.length > 0) {
+    if (fireworks.length > 0 || fireworksRunning) {
       fireworksAnimation = requestAnimationFrame(drawFireworks);
-    } else {
-      ctx.clearRect(0, 0, rect.width, rect.height);
-      lastFireworksTime = 0;
     }
   }
 
-  if (fireworksButton) {
-    fireworksButton.addEventListener("click", () => launchFireworks(12));
+  function startFireworks() {
+    if (!canvas || !ctx || fireworksRunning || document.hidden) return;
+
+    fireworksRunning = true;
+    launchClock = 0;
+    lastFireworksTime = 0;
+
+    resizeCanvas();
+
+    // A small opening show instead of two enormous bursts.
+    launchFireworks(3);
+
+    window.setTimeout(() => {
+      if (fireworksRunning) launchFireworks(2);
+    }, 500);
+
+    // Controlled periodic launches while Page 5 is open.
+    const launchLoop = () => {
+      if (!fireworksRunning) return;
+
+      launchClock += 1;
+
+      if (launchClock >= 48) {
+        launchClock = 0;
+        launchFireworks(2);
+      }
+
+      window.setTimeout(launchLoop, 100);
+    };
+
+    window.setTimeout(launchLoop, 100);
   }
 
-  // Begin with the first chapter.
+  function stopFireworks() {
+    fireworksRunning = false;
+
+    if (fireworksAnimation) {
+      cancelAnimationFrame(fireworksAnimation);
+      fireworksAnimation = 0;
+    }
+
+    fireworks.length = 0;
+    lastFireworksTime = 0;
+    launchClock = 0;
+
+    if (ctx && canvas) {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+    }
+  }
+
+  // Manual button: add a burst without creating another loop.
+  fireworksButton?.addEventListener("click", () => {
+    if (!fireworksRunning) {
+      startFireworks();
+    } else {
+      launchFireworks(4);
+    }
+  });
+
+  window.addEventListener("resize", resizeCanvas);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopFireworks();
+    } else if (currentChapter === 4) {
+      startFireworks();
+    }
+  });
+
+  // INITIALIZE
   showChapter(0);
 });
